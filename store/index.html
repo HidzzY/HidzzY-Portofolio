@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Wahid Store</title>
+    <link rel="icon" href="https://c.top4top.io/p_3763qwu8t1.jpg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="store-header">
+        <img src="https://files.catbox.moe/wugke8.jpg" alt="HidzzY Logo">
+        <h1>HidzzY <strong>Store</strong></h1>
+        <p>Temukan Produk Di Wahid!</p>
+    </header>
+
+    <div class="controls-container">
+        <input type="text" id="search-bar" placeholder="Cari produk...">
+        <select id="category-filter">
+            <option value="all">Semua Kategori</option>
+        </select>
+    </div>
+
+    <main id="product-list-container">
+    </main>
+
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modal-product-name">Detail Pemesanan Produk</h3>
+            <p>Harga: <strong id="modal-product-price">Rp0</strong></p>
+
+            <form id="order-form">
+                <label for="client-name">Nama Anda:</label>
+                <input type="text" id="client-name" name="clientName" required>
+
+                <label for="payment-method">Metode Pembayaran:</label>
+                <select id="payment-method" name="paymentMethod" required>
+                    <option value="">Pilih Metode Pembayaran</option>
+                    <option value="QRIS">QRIS</option>
+                    <option value="DANA">DANA</option>
+                    <option value="GOPAY">GOPAY</option>
+                </select>
+
+                <button type="submit">Konfirmasi Pesanan</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Muhammad Wahid. Semua hak dilindungi.</p>
+    </footer>
+
+    <script src="list.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
