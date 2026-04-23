@@ -17,6 +17,8 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
     background-color: var(--primary-white);
     color: var(--dark-grey-text);
     overflow-x: hidden;
@@ -53,28 +55,27 @@ a {
 #store-header {
     background-color: var(--black-solid);
     color: var(--primary-white);
-    padding: 50px 5%;
+    padding: 30px 5%;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 #store-header img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--primary-white);
-    display: block;
 }
 
 #store-header h1 {
     font-family: 'DM Sans', sans-serif;
     font-size: 2.8em;
-    margin: 0;
+    margin-bottom: 5px;
 }
 
 #store-header p {
@@ -87,8 +88,8 @@ a {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
-    padding: 30px 5%;
+    gap: 20px;
+    padding: 25px 5%;
     background-color: var(--light-grey-bg);
     border-bottom: 1px solid var(--medium-grey);
 }
@@ -102,162 +103,195 @@ a {
     font-size: 1em;
     color: var(--dark-grey-text);
     width: 100%;
-    max-width: 350px;
-    transition: all 0.3s ease;
+    max-width: 300px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.controls-container input[type="text"]:focus,
+.controls-container select:focus {
+    outline: none;
+    border-color: var(--black-solid);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 /* --- Product List --- */
-#product-list-container {
-    flex-grow: 1;
-    width: 100%;
-}
-
 #product-list {
+    flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    padding: 40px 8%;
-    max-width: 1400px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 40px 5%;
+    justify-content: center;
 }
 
 .product-card {
     background-color: var(--primary-white);
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    border: 1px solid #eee;
-    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 180px;
 }
 
 .product-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-    border-color: var(--black-solid);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .product-card h3 {
     font-family: 'DM Sans', sans-serif;
-    font-size: 1.4em;
+    font-size: 1.8em;
     color: var(--black-solid);
-    margin-bottom: 15px;
-    line-height: 1.3;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .product-card p {
-    font-size: 1.1em;
-    color: var(--accent-color);
-    font-weight: 700;
+    font-size: 1.2em;
+    color: var(--dark-grey-text);
+    font-weight: 600;
+    margin-top: 0;
 }
 
 /* --- Modal Pemesanan --- */
 .modal {
-    display: none; /* Default sembunyi */
+    display: none;
     position: fixed;
-    z-index: 9999;
+    z-index: 2000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    backdrop-filter: blur(5px);
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
 .modal.active {
-    display: flex; /* Aktifkan flex saat modal dipanggil */
     opacity: 1;
+    visibility: visible;
 }
 
 .modal-content {
     background-color: var(--primary-white);
+    margin: auto;
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     width: 90%;
-    max-width: 450px;
+    max-width: 500px;
     position: relative;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
+    transform: translateY(20px);
+    transition: transform 0.3s ease-out;
 }
 
 .modal.active .modal-content {
-    transform: scale(1);
+    transform: translateY(0);
 }
 
 .close-button {
+    color: var(--medium-grey);
+    font-size: 2.5em;
+    font-weight: bold;
     position: absolute;
     top: 15px;
-    right: 20px;
-    font-size: 28px;
+    right: 25px;
     cursor: pointer;
-    color: #999;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--black-solid);
 }
 
 .modal-content h3 {
-    margin-bottom: 10px;
     font-family: 'DM Sans', sans-serif;
-}
-
-.modal-content p {
+    font-size: 2em;
+    color: var(--black-solid);
     margin-bottom: 25px;
-    color: #666;
+    text-align: center;
 }
 
 .modal-content label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    text-align: left;
+    color: var(--dark-grey-text);
 }
 
-.modal-content input, .modal-content select {
+.modal-content input[type="text"],
+.modal-content select {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
     border: 1px solid var(--medium-grey);
     border-radius: 8px;
-    font-family: inherit;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: var(--black-solid);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 .modal-content button {
-    width: 100%;
-    padding: 15px;
-    background: var(--black-solid);
-    color: white;
+    background-color: var(--black-solid);
+    color: var(--primary-white);
+    padding: 15px 30px;
     border: none;
     border-radius: 8px;
-    font-weight: 700;
+    font-size: 1.1em;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .modal-content button:hover {
-    background: #333;
+    background-color: var(--dark-grey-text);
+    transform: translateY(-2px);
 }
 
 /* --- Footer --- */
 footer {
     background-color: var(--black-solid);
-    color: #888;
+    color: var(--medium-grey);
     text-align: center;
-    padding: 40px 20px;
+    padding: 30px;
+    font-size: 0.9em;
+    border-top: 5px solid var(--dark-grey-text);
     margin-top: auto;
 }
 
-/* --- Responsive --- */
+/* --- Responsive Design --- */
 @media (max-width: 768px) {
     #store-header h1 { font-size: 2.2em; }
-    #product-list { grid-template-columns: 1fr; padding: 20px 5%; }
-    .controls-container { flex-direction: column; }
-    .controls-container input, .controls-container select { max-width: 100%; }
+    .controls-container { flex-direction: column; align-items: center; }
+    .controls-container input[type="text"], .controls-container select { max-width: 90%; }
+    #product-list { padding: 20px 5%; }
+    .product-card h3 { font-size: 1.5em; }
+    .product-card p { font-size: 1.1em; }
+    .modal-content { padding: 30px; max-width: 95%; }
+}
+
+@media (max-width: 480px) {
+    #store-header h1 { font-size: 1.8em; }
+    .modal-content { padding: 20px; }
+    .modal-content h3 { font-size: 1.5em; }
+    .modal-content button { padding: 12px 20px; font-size: 1em; }
 }
